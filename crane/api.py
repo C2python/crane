@@ -52,9 +52,9 @@ def api():
 
     args = [
         "--if-not-plugin", "python", "--plugin", "python", "--endif",
-        "--%s" % conf.api.uwsgi_mode, "%s:%d" % (
-            conf.host or conf.api.host,
-            conf.port or conf.api.port),
+        "--%s" % conf.API.uwsgi_mode, "%s:%d" % (
+            conf.API.host,
+            conf.API.bind_port),
         "--master",
         "--enable-threads",
         "--thunder-lock",
