@@ -15,7 +15,7 @@ LOG = logging.getLogger(__name__)
 
 
 def build_wsgi_app(argv=None):
-    return app.load_app(service.prepare_service(argv=argv))
+    return app.load_app(service.prepare_service(args=argv))
 
 def api():
     # Compat with previous pbr script
@@ -27,8 +27,13 @@ def api():
         sys.argv.pop(double_dash)
 
     conf = cfg.ConfigOpts()
-    opts.add_cli_opts()
-    conf = service.prepare_service()
+
+    for opt in opts.api_opts:
+        cp = copy.copy(opt)
+        cp.default = None
+        conf.register_cli_opt(c)
+
+    conf = service.prepare_service(conf)
 
     if double_dash is not None:
         # NOTE(jd) Wait to this stage to log so we're sure the logging system
@@ -45,9 +50,6 @@ def api():
 
     workers = utils.get_default_workers()
 
-    # TODO(sileht): When uwsgi 2.1 will be release we should be able
-    # to use --wsgi-manage-chunked-input
-    # https://github.com/unbit/uwsgi/issues/1428
     args = [
         "--if-not-plugin", "python", "--plugin", "python", "--endif",
         "--%s" % conf.api.uwsgi_mode, "%s:%d" % (
