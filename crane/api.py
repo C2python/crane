@@ -31,7 +31,7 @@ def api():
     for opt in opts.api_opts:
         cp = copy.copy(opt)
         cp.default = None
-        conf.register_cli_opt(c)
+        conf.register_cli_opt(cp)
 
     conf = service.prepare_service(conf)
 
