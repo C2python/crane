@@ -1,0 +1,6 @@
+pecan
+oslo.config
+oslo.log
+stevedore
+Paste
+PasteDeploy
