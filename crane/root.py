@@ -4,7 +4,7 @@ from oslo_log import log as logging
 from pecan import rest
 import pecan
 
-LOG = logging.get_loggers(__name__)
+LOG = logging.getLogger(__name__)
 
 class V1Controller(rest.RestController):
 

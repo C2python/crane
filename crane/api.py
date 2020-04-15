@@ -28,11 +28,11 @@ def api():
 
     conf = cfg.ConfigOpts()
 
-    for opt in opts.api_opts:
+    '''for opt in opts.api_opts:
         cp = copy.copy(opt)
         cp.default = None
         conf.register_cli_opt(cp)
-
+    '''
     conf = service.prepare_service(conf)
 
     if double_dash is not None:

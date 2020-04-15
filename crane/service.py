@@ -1,8 +1,10 @@
+import sys
+
 from oslo_log import log
 from crane import opts
 from oslo_config import cfg
 
-def prepare_service(conf=None,args=None,config_file=None):
+def prepare_service(conf=None,argv=None,config_files=None):
     if conf is None:
         conf = cfg.ConfigOpts()
     for group,options in opts.list_opts():
@@ -10,5 +12,9 @@ def prepare_service(conf=None,args=None,config_file=None):
                             group=None if group == 'DEFAULT' else group)
     conf.register_cli_opts(opts._cli_options)
     log.register_options(conf)
+    if argv is None:
+        argv = sys.argv
+    conf(argv[1:],project='crane',validate_default_values=True,
+        default_config_files=config_files)
     log.setup(conf,'crane')
     return conf

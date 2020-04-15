@@ -19,14 +19,10 @@ api_opts = [
 ]
 
 _cli_options = [
-    cfg.BoolOpt('debug',
-                short='d',
-                default=False,
-                help='Turn On debug model'),
-    cfg.StrOpt('log-file',
-                default="/var/log/crane.log",
+    cfg.StrOpt('test',
+                default="ttt",
                 metavar='PATH',
-                help='Path to API Paste configuration.'),
+                help='Path to API Paste configuration.')
 ]
 
 def list_opts():
