@@ -52,9 +52,9 @@ def api():
 
     args = [
         "--if-not-plugin", "python", "--plugin", "python", "--endif",
-        "--%s" % conf.API.uwsgi_mode, "%s:%d" % (
-            conf.API.host,
-            conf.API.bind_port),
+        "--%s" % conf.api.uwsgi_mode, "%s:%d" % (
+            conf.api.host,
+            conf.api.bind_port),
         "--master",
         "--enable-threads",
         "--thunder-lock",
@@ -67,7 +67,7 @@ def api():
         "--wsgi", "crane.wsgi",
         "--pyargv", " ".join(sys.argv[1:]),
     ]
-    if conf.API.uwsgi_mode == "http":
+    if conf.api.uwsgi_mode == "http":
         args.extend([
             "--so-keepalive",
             "--http-keepalive",

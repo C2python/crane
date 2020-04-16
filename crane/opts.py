@@ -28,5 +28,5 @@ _cli_options = [
 def list_opts():
     return [
         ('DEFAULT',_cli_options),
-        ('API',api_opts)
+        ('api',api_opts)
     ]
