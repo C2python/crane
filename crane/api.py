@@ -67,7 +67,7 @@ def api():
         "--wsgi", "crane.wsgi",
         "--pyargv", " ".join(sys.argv[1:]),
     ]
-    if conf.api.uwsgi_mode == "http":
+    if conf.API.uwsgi_mode == "http":
         args.extend([
             "--so-keepalive",
             "--http-keepalive",
