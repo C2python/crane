@@ -15,7 +15,7 @@ LOG = logging.getLogger(__name__)
 
 
 def build_wsgi_app(argv=None):
-    return app.load_app(service.prepare_service(args=argv))
+    return app.load_app(service.prepare_service())
 
 def api():
     # Compat with previous pbr script
@@ -39,7 +39,7 @@ def api():
         # NOTE(jd) Wait to this stage to log so we're sure the logging system
         # is in place
         LOG.warning(
-            "No need to pass `--' in gnocchi-api command line anymore, "
+            "No need to pass `--' in crane-api command line anymore, "
             "please remove")
 
     uwsgi = spawn.find_executable("uwsgi")
